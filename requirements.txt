@@ -8,7 +8,6 @@ django-tempus-dominus==5.1.2.13
 isort==4.3.21
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
-pkg-resources==0.0.0
 pylint==2.5.0
 pytz==2020.1
 six==1.14.0
