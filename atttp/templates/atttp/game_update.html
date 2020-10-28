@@ -1,0 +1,81 @@
+{% extends "atttp/base.html" %}
+{% load render_table from django_tables2 %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Tekma
+{% endblock %}
+{% block add_head %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Tekma
+        </div>
+        <div class="card-body">
+            
+            <fieldset>
+                <legend>Igra</legend>
+                <div>
+                    <!-- Datum -->
+                    <div id="div_id_datum" class="form-group row">
+                        <label for="id_datum_0" class="col-form-label col-md-4 create-label">
+                            <strong>Datum</strong>
+                        </label>
+                        <div class="">
+                            {{ gamehead.datum|date:'d/m/Y' }} {{ gamehead.datum|time:'H:i' }}
+                        </div>
+                    </div>
+                    <!-- Igrisce -->
+                    <div id="div_id_igrisce" class="form-group row">
+                        <label for="id_igrisce" class="col-form-label col-md-4 create-label">
+                            <strong>Igrišče</strong>
+                        </label>
+                        <div class="">
+                            {{ gamehead.igrisce }}
+                        </div>
+                    </div>
+                    <!-- Igralca -->
+                    <div id="div_id_igralca" class="form-group row">
+                        <label for="id_igralca" class="col-form-label col-md-4 create-label">
+                            <strong>Igralca</strong>
+                        </label>
+                        <div class="">
+                            {{ gamehead.oseba_1.first_name }} - {{ gamehead.oseba_2.first_name }}
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <hr>
+            <form method="post" action="" class="">
+                {# crispy form #}
+                
+                {% csrf_token %}
+                {% crispy details details.form.helper %}
+                <input class="submit btn-primary" type="submit" value="Shrani">
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+    $( document ).ready(function() {
+        $( ".datepicker" ).datepicker({
+            dateFormat: "dd/mm/yy",
+            minDate: 0
+        });
+        $(".timepicker").timepicker({
+            timeFormat: 'HH:mm',
+            minTime: '07:00',
+            maxTime: '23:00',
+            interval: 60,
+            defaultTime: '7'
+        });
+    });
+</script>
+{% endblock content %}

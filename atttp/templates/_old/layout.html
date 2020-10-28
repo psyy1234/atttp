@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    {# Include Bootstrap 4 and jQuery #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% block add_head %}
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'atttp/site.css' %}"/>
+</head>
+
+<body>
+<div class="navbar">
+    <a href="{% url 'home' %}" class="navbar-brand">Domov</a>
+    <a href="{% url 'create_chall' %}" class="navbar">Izziv</a>
+</div>
+
+<div class="body-content">
+    {% block content %}
+    {% endblock %}
+    <hr/>
+    <footer>
+        <p>© 2020</p>
+    </footer>
+</div>
+</body>
+</html>

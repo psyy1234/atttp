@@ -1,0 +1,28 @@
+{% extends "atttp/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Tekma
+{% endblock %}
+{% block add_head %}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Tekma
+        </div>
+        <div class="card-body">
+            
+            
+            <form method="post" action="" class="">
+                
+
+                {% crispy form %}
+                {% crispy details details.form.helper %}
+                <input class="submit btn-primary" type="submit" value="Shrani">
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

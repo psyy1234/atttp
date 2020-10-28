@@ -1,0 +1,9 @@
+.marquee {
+    width: 300px;
+    overflow: hidden;
+    position: center;
+    color: rgb(161, 0, 0);
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}

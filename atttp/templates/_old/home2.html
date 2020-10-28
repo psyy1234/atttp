@@ -1,0 +1,47 @@
+{% block content %}
+    <h2>Odigrane igre</h2>
+    {% if games %}
+        <table class="message_list" border=1>
+            <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Ura</th>
+                <th>Igrišče</th>
+                <th>Igralec 1</th>
+                <th>Igralec 2</th>
+                <th>Niz 1</th>
+                <th>Niz 2</th>
+                <th>Niz 3</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for game in games %}
+                <tr>
+                    <td>{{ game.datum | date:'d M Y' }}</td>
+                    <td>{{ game.datum | time:'H:i' }}</td>
+                    <td>{{ game.igrisce.naziv }}</td>
+                    <td>
+                        {{ game.oseba_1.first_name }}
+                    </td>
+                    <td>
+                        {{ game.oseba_2.first_name }}
+                    </td>
+                    {% if game_details %}
+                        {% for gd in game_details %}
+                            {% if gd.igra.id == game.id %}
+                              <td>{{ gd.rezultat_1 }} - {{ gd.rezultat_2 }} {% if gd.max_break_point %}({{ gd.max_break_point }}){% endif %}</td>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    {% endif%}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Ni bilo odigranih iger</p>
+    {% endif %}
+{% endblock %}

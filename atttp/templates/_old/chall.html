@@ -1,0 +1,21 @@
+{% extends "atttp/layout.html" %}
+{% block title %}
+    Ustvari izziv
+{% endblock %}
+{% block add_head %}
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <h1 class="mt-2">Nova tekma</h1>
+        <hr class="mt-0 mb-4">
+        {% csrf_token %}
+        {% form %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

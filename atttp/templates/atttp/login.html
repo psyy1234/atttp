@@ -1,0 +1,44 @@
+{% extends "atttp/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Login
+{% endblock %}
+
+{% block add_head %}
+{% endblock %}
+
+{% block content %}
+    <center>
+    {% if form.errors %}
+        <p><strong>Uporabniško ime in geslo se ne ujemata. Prosim poskusite ponovno.</strong></p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Vaš račun nima dostopa do te strani. Za dostop se prosim vpišite z vaši računom.</p>
+        {% else %}
+        <p>Za ogled te strani se prosim vpišite.</p>
+        {% endif %}
+    {% endif %}
+
+
+    <form method="post" action="{% url 'atttp:login' %}">
+    {% csrf_token %}
+
+    <table>
+    <tr>
+        <td>Uporabniško ime: </td>
+        <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+        <td>Geslo: </td>
+        <td>{{ form.password }}</td>
+    </tr>
+    </table>
+
+    <input type="submit" value="Vpis">
+    <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    </center>
+
+{% endblock %}

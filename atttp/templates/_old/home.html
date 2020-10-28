@@ -1,0 +1,40 @@
+{% extends "atttp/layout.html" %}
+{% block title %}
+    Home
+{% endblock %}
+{% block add_head %}
+{% endblock %}
+{% block content %}
+<center>
+    <h2>Statistika</h2>
+    
+    {% if game_stats %}
+        <table class="message_list" border=1>
+            <thead>
+                <th>Ime</th>
+                <th>Odigranih iger</th>
+                <th>Zmag</th>
+                <th>Izenačenj</th>
+                <th>Izgub</th>
+                <th>Točk</th>
+            </thead>
+            <tbody>
+            {% for s in game_stats %}
+                <tr>
+                    <td>{{ s.first_name }}</td>
+                    <td>{{ s.games_played }}</td>
+                    <td>{{ s.wins }}</td>
+                    <td>{{ s.ties }}</td>
+                    <td>{{ s.loss }}</td>
+                    <td>{{ s.points }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Ni bilo odigranih iger</p>
+    {% endif %}
+
+    {% include "atttp/home2.html" %}
+</center>
+{% endblock %}

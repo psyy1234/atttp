@@ -1,0 +1,54 @@
+{% extends "atttp/base.html" %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block title %}
+    Statistika
+{% endblock %}
+{% block add_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'atttp/CSS/atttp.css' %}">
+<script type="text/javascript" src="{% static 'atttp/JS/jquery.marquee.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+<center>
+    <label class="col-form-label create-label"><strong>Prihajajoče tekme: </strong></label>
+    {% if upcomming_games %}
+        <div class="marquee" data-pauseOnHover="true">{{ upcomming_games }}</div>
+    {% else %}
+        <div class="marquee" data-pauseOnHover="true">Ni tekem.</div>
+    {% endif %}
+</center>
+<div>
+<form action="" method="get">
+    {{ filter.form }}
+    <button type="submit" class="btn btn-dark">Osveži</button>
+</form>
+</div>
+<br>
+<div class="container">
+    <!-- TODO: weather, player sheet -->
+    <div class="card">
+        <div class="card-header text-white bg-dark">
+            Lestvica
+        </div>
+        <div class="card-body table-responsive">
+                {% render_table standings_table %}
+        </div>
+        <div class="card-header text-white bg-dark">
+            Rezultati
+        </div>
+        <div class="card-body table-responsive">
+            <h1></h1>
+            {% render_table table %}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.marquee').marquee({
+            duration: 5000
+        });
+    });
+</script>
+{% endblock content %}
